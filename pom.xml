@@ -98,6 +98,28 @@
     </dependency>
   </dependencies>
 
+
+  <profiles>
+    <profile>
+      <id>musl</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.graalvm.buildtools</groupId>
+            <artifactId>native-maven-plugin</artifactId>
+            <extensions>true</extensions>
+            <configuration>
+              <buildArgs>
+                <buildArg>--static</buildArg>
+                <buildArg>--libc=musl</buildArg>
+              </buildArgs>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
   <build>
     <finalName>${project.artifactId}</finalName>
 

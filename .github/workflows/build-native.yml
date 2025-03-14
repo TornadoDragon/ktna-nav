@@ -5,6 +5,15 @@ jobs:
     strategy:
        matrix:
          arch: [ ubuntu-24.04, ubuntu-24.04-arm ]
+         build-type: [ libc, musl ]
+         include:
+           - build-type: musl
+             build-args: '-P musl'
+           - build-type: libc
+             build-args: ''
+         exclude:
+           - arch: ubuntu-24.04-arm
+             build-type: musl
     runs-on: ${{ matrix.arch }}
     steps:
       - uses: actions/checkout@v4
@@ -13,13 +22,15 @@ jobs:
           java-version: '17'
           distribution: 'graalvm-community'
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          native-image-musl: ${{ matrix.build-type == 'musl' }}
       - name: Build Native
         run: |
           java --version
           native-image --version
-          mvn clean native:compile -P native -DskipTests
+          mvn clean native:compile -P native ${{ matrix.build-args }} -DskipTests
           cd target
-          tar -czvf ktna-nav-${{ matrix.arch }}.tar ktna-nav-project
+          mv ktna-nav-project ktna-nav
+          tar -czvf ktna-nav-${{ matrix.arch }}.tar ktna-nav
       - name: Upload binary
         uses: actions/upload-artifact@v4
         with:
