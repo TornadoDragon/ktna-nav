@@ -19,9 +19,9 @@ jobs:
           native-image --version
           mvn clean native:compile -P native -DskipTests
           cd target
-          tar -czvf ktna-nav-${{ matrix.os }}.tar ktna-nav-project
+          tar -czvf ktna-nav-${{ matrix.arch }}.tar ktna-nav-project
       - name: Upload binary
         uses: actions/upload-artifact@v4
         with:
-          name: ktna-nav-${{ matrix.os }}.tar
-          path: ktna-nav-${{ matrix.os }}.tar
+          name: ktna-nav-${{ matrix.arch }}.tar
+          path: target/ktna-nav-${{ matrix.arch }}.tar
