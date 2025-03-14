@@ -1,0 +1,27 @@
+name: Oracle GraalVM Early Access build
+on: [push, pull_request]
+jobs:
+  build:
+    strategy:
+       matrix:
+         arch: [ ubuntu-24.04, ubuntu-24.04-arm ]
+    runs-on: ${{ matrix.arch }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: '17'
+          distribution: 'graalvm-community'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build Native
+        run: |
+          java --version
+          native-image --version
+          mvn clean native:compile -P native -DskipTests
+          cd target
+          tar -czvf ktna-nav-${{ matrix.os }}.tar ktna-nav-project
+      - name: Upload binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: ktna-nav-${{ matrix.os }}.tar
+          path: ktna-nav-${{ matrix.os }}.tar
