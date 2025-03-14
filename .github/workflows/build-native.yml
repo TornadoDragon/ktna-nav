@@ -12,6 +12,8 @@ jobs:
            - build-type: libc
              build-args: ''
          exclude:
+           - arch: ubuntu-24.04
+             build-type: libc
            - arch: ubuntu-24.04-arm
              build-type: musl
     runs-on: ${{ matrix.arch }}
