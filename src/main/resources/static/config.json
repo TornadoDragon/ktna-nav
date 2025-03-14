@@ -1,0 +1,32 @@
+{
+  "title": "运维管理导航（开发环境）",
+  "navData": [
+    {
+      "title": "实施运维",
+      "data": [
+        {
+          "name": "运维发布平台",
+          "href": "http://ktna-deploy:5013",
+          "desc": "运维发布平台，实施部署应用服务",
+          "logo": "/logo/deploy.png"
+        },
+        {
+          "name": "Loki日志聚合",
+          "href": "http://10.1.50.102:3000/explore?schemaVersion=1&panes=%7B%22gmw%22:%7B%22datasource%22:%22ddtzi3nd5qjuof%22,%22queries%22:%5B%7B%22refId%22:%22A%22,%22expr%22:%22%7Bprofile%3D%5C%22devKT%5C%22%7D%20%7C%3D%20%60%60%22,%22queryType%22:%22range%22,%22datasource%22:%7B%22type%22:%22loki%22,%22uid%22:%22ddtzi3nd5qjuof%22%7D,%22editorMode%22:%22builder%22%7D%5D,%22range%22:%7B%22from%22:%22now-1h%22,%22to%22:%22now%22%7D%7D%7D&orgId=1",
+          "desc": "Loki日志聚合（开发环境）",
+          "logo": "https://grafana.com/static/assets/img/fav32.png"
+        }
+      ]
+    },
+    {
+      "title": "项目导航",
+      "data": [
+        {
+          "name": "远程门诊上级医生",
+          "href": "http://ktna-deploy:5013",
+          "desc": "运维发布平台，实施部署应用服务"
+        }
+      ]
+    }
+  ]
+}

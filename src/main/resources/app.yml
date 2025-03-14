@@ -1,0 +1,32 @@
+server.port: 8080
+server.host: 0.0.0.0
+
+solon.app:
+  name: 'ktna-nav'
+  group: 'ktna'
+
+solon.logging:
+  appender:
+    console:
+      level: INFO
+    file:
+      level: INFO
+
+solon.data-sources:
+  h2:
+    class: "com.zaxxer.hikari.HikariDataSource"
+    jdbcUrl: jdbc:h2:file:./h2/ktna-nav;MODE=MySQL;DATABASE_TO_LOWER=TRUE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ${database.password:sa}
+    connection-test-query: "SELECT 1"
+
+mybatis:
+  h2:
+    mappers:
+      - "com.ktna.cloud.mapper"
+      - "classpath:mapper/**/*Mapper.xml"
+    configuration: #扩展配置（要与 MybatisConfiguration 类的属性一一对应）
+      cacheEnabled: false
+      mapperVerifyEnabled: false #如果为 true，则要求所有 mapper 有 @Mapper 主解
+      mapUnderscoreToCamelCase: true
