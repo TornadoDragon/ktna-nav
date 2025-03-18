@@ -10,7 +10,7 @@ jobs:
            - build-type: musl
              build-args: '-P musl'
            - build-type: libc
-             build-args: ''
+             build-args: '-P libc'
          exclude:
            - arch: ubuntu-24.04
              build-type: libc
