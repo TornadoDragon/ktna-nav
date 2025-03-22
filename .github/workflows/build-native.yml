@@ -7,15 +7,12 @@ jobs:
          arch: [ ubuntu-24.04, ARM64 ]
          build-type: [ libc, musl ]
          include:
-           - build-type: musl
-             build-args: '-P musl'
-           - build-type: libc
-             build-args: '-P libc'
-         exclude:
            - arch: ubuntu-24.04
-             build-type: libc
-           - arch: ARM64
              build-type: musl
+             build-args: '-P musl'
+           - arch: kylin-v10-sp3
+             build-type: libc
+             build-args: '-P kylin'
     runs-on: ${{ matrix.arch }}
     steps:
       - uses: actions/checkout@v4

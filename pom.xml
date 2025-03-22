@@ -119,7 +119,7 @@
       </build>
     </profile>
     <profile>
-      <id>libc</id>
+      <id>kylin</id>
       <build>
         <plugins>
           <plugin>
@@ -128,7 +128,7 @@
             <extensions>true</extensions>
             <configuration>
               <buildArgs>
-                <buildArg>-H:PageSize=16384</buildArg>
+                <buildArg>-H:PageSize=65536</buildArg>
                 <buildArg>-H:NumberOfThreads=2</buildArg>
               </buildArgs>
             </configuration>
