@@ -4,7 +4,7 @@ jobs:
   build:
     strategy:
        matrix:
-         arch: [ ubuntu-24.04, ARM64 ]
+         arch: [ ubuntu-24.04, kylin-v10-sp3 ]
          build-type: [ libc, musl ]
          include:
            - arch: ubuntu-24.04
@@ -13,6 +13,11 @@ jobs:
            - arch: kylin-v10-sp3
              build-type: libc
              build-args: '-P kylin'
+         exclude:
+           - arch: ubuntu-24.04
+             build-type: libc
+           - arch: kylin-v10-sp3
+             build-type: musl
     runs-on: ${{ matrix.arch }}
     steps:
       - uses: actions/checkout@v4
